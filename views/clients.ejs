@@ -1,0 +1,25 @@
+<%-include('partials/headers'); %>
+<div class="center">
+    <h6>Clientes</h6>
+    <% if (type=='LISTA' ) { %>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>idCliente</th>
+                        <th>nombre</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var u of lista){ %>
+                        <tr>
+                            <td> <% = u.idCliente %> </td>
+                            <td> <% = u.nombre %> </td>
+                        </tr>
+                    <% } %>
+                </tbody>
+            </table>
+        </div>
+        <% } %>
+</div>
+<%-include('partials/footers'); %>
