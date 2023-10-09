@@ -1,3 +1,4 @@
+
 const mariadb = require("mariadb");
 const pool = mariadb.createPool({
     host: process.env.DB_HOST,
@@ -7,16 +8,12 @@ const pool = mariadb.createPool({
 });
 
 module.exports = {
-
-    getConection(){
-        return new Promise(function(res, rej) {
-            pool.getConnection()
-            .then(function(conn){
-                res(conn);
-            })
-            .catch(function(error){
-                rej(error);
-            })
-        })
-    }
+    async getConnection() {
+        try {
+            const connection = await pool.getConnection();
+            return connection;
+        } catch (error) {
+            throw error;
+        }
+    },
 };
