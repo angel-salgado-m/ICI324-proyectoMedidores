@@ -1,0 +1,29 @@
+<%- include('partials/headers'); %>
+<div class="center">
+    <h6>Consultas</h6>
+    <% if (type == 'LISTA' && lista.length > 0) { %>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <% for (var attribute in lista[0]) { %>
+                            <th><%= attribute %></th>
+                        <% } %>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% lista.forEach(function(item) { %>
+                        <tr>
+                            <% for (var attribute in item) { %>
+                                <td><%= item[attribute] %></td>
+                            <% } %>
+                        </tr>
+                    <% }); %>
+                </tbody>
+            </table>
+        </div>
+    <% } else { %>
+        <p>No hay datos disponibles.</p>
+    <% } %>
+</div>
+<%- include('partials/footers'); %>
