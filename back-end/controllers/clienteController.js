@@ -15,7 +15,7 @@ const getAllClientes = async (req, res) => {
 
     return res.status(200).json({
         success: true,
-        usuarios: rows
+        clientes: rows
     });
 
     } catch(error) {
