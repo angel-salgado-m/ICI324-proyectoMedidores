@@ -7,6 +7,6 @@ const router = Router();
 router.get('/allTrabajadores', getAllTrabajadores);
 router.get('/trabajador/:cargo', getTrabajadorByCargo);
 router.put('/trabajador/:rut', updateNombreTrabajador);
-router.put('/trabajador/add', addTrabajador);
+router.post('/trabajador/add', addTrabajador);
 
 module.exports = router;

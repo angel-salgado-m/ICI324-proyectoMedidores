@@ -91,7 +91,7 @@ const addTrabajador = async (req, res) => {
 
     const connection = await createConnection();
     const [result] = await connection.execute('INSERT INTO trabajador (rut, idSectores, nombre, password, cargo, horario) VALUES (?, ?, ?, ?, ?, ?)',
-     [nombre, rut, idSector, password, cargo, horario]);
+     [rut, idSector, nombre, password, cargo, horario]);
     await connection.end();
 
     return res.status(200).json({
