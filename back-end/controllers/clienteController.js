@@ -1,11 +1,17 @@
-const pool = require('../utils/db.js');
+const mysql2 = require('mysql2/promise');
+const connectionConfig = require('../utils/db.js');
+
+const createConnection = async ( ) => {
+    return await mysql2.createConnection(connectionConfig);
+}
 
 const getAllClientes = async (req, res) => {
 
     try{
-    const conn = await pool.getConnection();
-    const [rows] = await conn.query("SELECT * FROM cliente");
-    await conn.end();
+        const connection = await createConnection();
+        console.log("funciona la wea")
+        const [rows] = await connection.execute('SELECT * from cliente');
+        await connection.end();
 
     return res.status(200).json({
         success: true,

@@ -1,25 +1,20 @@
-const mariadb = require("mariadb");
+//import mysql2 from 'mysql2';
+const mysql2 = require('mysql2');
+require('dotenv').config();
 
-const pool = mariadb.createPool({
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_DATABASE,
+
+const connectionConfig = {
+    host: process.env.DB_HOST,
+    user: 'root',
+    password: 'rootpass',
+    database: 'gasvalpo'
+};
+/* The code is creating a connection to a MySQL database using the `mysql2` library. */
+
+const connection = mysql2.createConnection({
+    host: connectionConfig.host,
+    user: connectionConfig.user,
+    password: connectionConfig.password
 });
 
-module.exports = {
-  getConnection() {
-    return new Promise(function (res, rej) {
-      pool
-        .getConnection()
-        .then(function (conn) {
-          console.log("BD Conectada.")
-          res(conn);
-        })
-        .catch(function (error) {
-          console.log("Error al conectar con la BD.")
-          rej(error);
-        });
-    });
-  },
-};
+module.exports = connectionConfig;
