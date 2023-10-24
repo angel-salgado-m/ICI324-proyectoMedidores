@@ -48,7 +48,31 @@ const getTrabajadorByCargo = async (req, res) => {
     }
 };
 
+const updateNombreTrabajador = async (req, res) => {
+  try {
+    rut = req.params.rut;
+    nombre = req.body.nombre;
+    console.log(nombre);
+    const connection = await createConnection();
+    const [result] = await connection.execute('UPDATE trabajador SET nombre = ? WHERE rut = ?', [nombre, rut]);
+    await connection.end();
+
+    return res.status(200).json({
+      success: true,
+      affectedRows: result.affectedRows
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      error: "Problema al actualizar el trabajador",
+      code: error
+    });
+  }
+};
+
 module.exports = {
     getAllTrabajadores,
-    getTrabajadorByCargo
+    getTrabajadorByCargo,
+    updateNombreTrabajador
 };
