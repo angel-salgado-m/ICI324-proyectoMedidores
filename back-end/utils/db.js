@@ -13,9 +13,11 @@ module.exports = {
       pool
         .getConnection()
         .then(function (conn) {
+          console.log("BD Conectada.")
           res(conn);
         })
         .catch(function (error) {
+          console.log("Error al conectar con la BD.")
           rej(error);
         });
     });
