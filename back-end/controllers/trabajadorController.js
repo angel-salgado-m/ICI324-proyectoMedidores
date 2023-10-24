@@ -9,7 +9,7 @@ const getAllTrabajadores = async (req, res) => {
 
     try{
         const connection = await createConnection();
-        console.log("funciona la wea")
+        console.log("Usando metodo getAllTrabajadores");
         const [rows] = await connection.execute('SELECT * from trabajador');
         await connection.end();
 
@@ -39,6 +39,7 @@ const getTrabajadorByCargo = async (req, res) => {
           code: error
         });
       }
+      console.log("Usando metodo getTrabajadorByCargo");
       const connection = await createConnection();
       const [rows] = await connection.execute('SELECT * FROM trabajador WHERE cargo = ?', [cargo]);
       await connection.end();
@@ -60,7 +61,7 @@ const updateNombreTrabajador = async (req, res) => {
   try {
     rut = req.params.rut;
     nombre = req.body.nombre;
-    console.log(nombre);
+    console.log("Usando metodo updateNombreTrabajador");
     const connection = await createConnection();
     const [result] = await connection.execute('UPDATE trabajador SET nombre = ? WHERE rut = ?', [nombre, rut]);
     await connection.end();
@@ -89,6 +90,7 @@ const addTrabajador = async (req, res) => {
     cargo = req.body.cargo;
     horario = req.body.horario;
 
+    console.log("Usando metodo addTrabajador");
     const connection = await createConnection();
     const [result] = await connection.execute('INSERT INTO trabajador (rut, idSectores, nombre, password, cargo, horario) VALUES (?, ?, ?, ?, ?, ?)',
      [rut, idSector, nombre, password, cargo, horario]);

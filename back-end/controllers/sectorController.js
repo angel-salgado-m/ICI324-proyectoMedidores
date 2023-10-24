@@ -3,31 +3,34 @@ const connectionConfig = require('../utils/db.js');
 
 const createConnection = async ( ) => {
     return await mysql2.createConnection(connectionConfig);
-}
+};
 
-const getAllClientes = async (req, res) => {
+const updateSucursal = async (req, res) => {
 
     try{
+        id = req.params.id;
+        sucursal = req.body.sucursal;
+        console.log("Usando metodo updateSucursal");
         const connection = await createConnection();
-        console.log("Usando metodo getAllClientes");
-        const [rows] = await connection.execute('SELECT * from cliente');
+        const [rows] = await connection.execute('UPDATE sector SET sucursal = ? WHERE idSector = ?;', 
+        [sucursal, id]);
         await connection.end();
 
     return res.status(200).json({
         success: true,
-        clientes: rows
+        trabajadores: rows
     });
 
     } catch(error) {
         return res.status(500).json({
             status: false,
-            error: "Problema al obtener el cliente",
+            error: "Problema al actualizar la sucursal.",
             code: error
         });
     }
-
+    
 };
 
 module.exports = {
-    getAllClientes
+    updateSucursal
 };

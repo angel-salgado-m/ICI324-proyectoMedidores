@@ -28,7 +28,7 @@ const getConsultaById = async (req, res) => {
               error: "Consulta no encontrada"
             });
         }
-        
+        console.log("Usando metodo getConsultaById");
         const connection = await createConnection();
         const [rows] = await connection.execute(consulta);
         await connection.end();

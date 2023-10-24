@@ -28,10 +28,12 @@ app.use(express.urlencoded({extended:true}));
 const routerCliente = require('./routes/routerCliente.js');
 const routerTrabajador = require('./routes/routerTrabajador.js');
 const routerConsultas = require('./routes/routerConsultas.js');
+const routerSector = require('./routes/routerSector.js');
 
 app.use('/cliente', routerCliente);
 app.use('/trabajador', routerTrabajador);
 app.use('/consulta', routerConsultas);
+app.use('/sector', routerSector);
 
 app.listen(port, function () {
     console.log("Server listening at: " + port);
