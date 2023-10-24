@@ -53,6 +53,32 @@ Actualizar nombre del trabajador
 - **Respuestas esperadas**:
   - Código de estado 200: [Se devuelve un JSON con el codigo y la cantidad de filas afectadas.]
   - Código de estado 500: [Cuando el back-end no ejecuta bien la consulta o no se conecta a la base de datos]
+  
+  Añadir trabajador trabajador
+- **Método HTTP**: [POST]
+- **Ruta**: [/trabajador/add]
+- **Descripción**: [Este endpoint permite añadir un trabajador a la base de datos]
+- **Parámetros de entrada**:
+  - `rut` (obligatorio): El rut del trabajador que será añadido a la base de datos.
+  - `idSector` (obligatorio): El sector al que pertenece el trabajador.
+  - `nombre` (obligatorio): El nombre del trabajador.
+  - `password` (obligatorio): Contraseña del trabajador.
+  - `cargo` (obligatorio): Cargo del trabajador ("Lector" o "Inspector").
+  - `horario` (obligatorio): Horario que posee el trabajador.
+- **Respuestas esperadas**:
+  - Código de estado 200: [Se devuelve un JSON con el codigo y la cantidad de filas afectadas.]
+  - Código de estado 500: [Cuando el back-end no ejecuta bien la consulta o no se conecta a la base de datos]
+  
+  ### **[Sector]**
+Actualizar sucursal de un sector según ID
+- **Método HTTP**: [PUT]
+- **Ruta**: [/sector/:id]
+- **Descripción**: [Este endpoint permite actualizar la sucursal de un sector según la ID en la dirección y su nombre entregado.]
+- **Parámetros de entrada**:
+- `sucursal` (obligatorio): Nombre de la nueva sucursal.
+- **Respuestas esperadas**:
+  - Código de estado 200: [Se devuelve el JSON con el codigo y la respuesta de la query]
+  - Código de estado 500: [Cuando el back-end no encuentra la tabla de trabajadores o no se conecta a la base de datos]
 
 ### **[Consultas]**
 Obtener resultados de consultas por ID
@@ -84,15 +110,139 @@ Detalles sobre cómo los clientes deben autenticarse y posiblemente autorizarse 
 ## Errores
 Descripción de posibles códigos de error y su significado.
 
-- Código de estado 400: [Descripción]
-- Código de estado 401: [Descripción]
-- Código de estado 403: [Descripción]
-- Código de estado 404: [Descripción]
-
-(Repita esta sección para describir todos los códigos de error relevantes)
+- Código de estado 400: [Quiere decir que el usuario ingresó una ruta incorrecta o inexistente]
+- Código de estado 500: [Significa que el servidor no pudo hacer una conexión a la base de datos o su lógica falló.]
 
 ## Ejemplos
 Ejemplos de solicitudes y respuestas para cada endpoint.
 
-### [Nombre del Endpoint 1]
-#### Solicitud de Ejemplo
+### **[cliente]**
+#### [Solicitud de Ejemplo]
+```
+GET http://localhost:3030/cliente/allClientes
+Content-Type: application/json
+```
+### [Respuesta de ejemplo]
+```
+{
+  "success": true,
+  "clientes": [
+    {
+      "idCliente": 1,
+      "nombre": "Cliente 1",
+      "telefono": null
+    },
+    {
+      "idCliente": 2,
+      "nombre": "Cliente 2",
+      "telefono": null
+    },
+    {
+      "idCliente": 3,
+      "nombre": "Cliente 3",
+      "telefono": null
+    },
+    {
+      "idCliente": 4,
+      "nombre": "Cliente 4",
+      "telefono": null
+    },
+    {
+      "idCliente": 5,
+      "nombre": "Cliente 5",
+      "telefono": null
+    }
+  ]
+}
+```
+
+### **[trabajador]**
+#### [Solicitud de Ejemplo]
+```
+GET http://localhost:3030/trabajador/trabajador/Inspector
+Content-Type: application/json
+```
+### [Respuesta de ejemplo]
+```
+{
+  "success": true,
+  "trabajadores": [
+    {
+      "rut": "20692041-6",
+      "idSectores": 2,
+      "nombre": "Angel Salgado",
+      "password": "secreto123",
+      "cargo": "Inspector",
+      "horario": "Horario 2"
+    },
+    {
+      "rut": "22222222-2",
+      "idSectores": 1,
+      "nombre": "Ana Rodriguez",
+      "password": "password2",
+      "cargo": "Inspector",
+      "horario": "Horario 2"
+    },
+    {
+      "rut": "44444444-4",
+      "idSectores": 3,
+      "nombre": "Maria Sanchez",
+      "password": "password4",
+      "cargo": "Inspector",
+      "horario": "Horario 4"
+    }
+  ]
+}
+```
+
+### **[consultas]**
+#### [Solicitud de Ejemplo]
+```
+GET http://localhost:3030/consulta/consulta/4
+Content-Type: application/json
+```
+### [Respuesta de ejemplo]
+```
+{
+  "success": true,
+  "trabajadores": [
+    {
+      "idDireccion": 4,
+      "idSector": 4,
+      "idCliente": 4,
+      "pob": "Población 4",
+      "blk": "Bloque D",
+      "dep": "Departamento 104"
+    }
+  ]
+}
+```
+
+### **[sector]**
+#### [Solicitud de Ejemplo]
+```
+PUT http://localhost:3030/sector/sector/2
+Content-Type: application/json
+
+{
+  "sucursal": "Sucursal Z"
+}
+```
+### [Respuesta de ejemplo]
+```
+{
+  "success": true,
+  "response": {
+    "fieldCount": 0,
+    "affectedRows": 1,
+    "insertId": 0,
+    "info": "Rows matched: 1  Changed: 0  Warnings: 0",
+    "serverStatus": 2,
+    "warningStatus": 0,
+    "changedRows": 0
+  }
+}
+```
+
+## Consideraciones de Seguridad
+Actualmente la api no posee medidas de seguridad ya que no posee funcionalidades de verificación aún, sin embargo, en futuras entregas se puede implementar el uso de distintos Middlewares y encriptación para asegurar la seguridad de los datos en la base de datos.

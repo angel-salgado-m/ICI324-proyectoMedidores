@@ -18,7 +18,7 @@ const updateSucursal = async (req, res) => {
 
     return res.status(200).json({
         success: true,
-        trabajadores: rows
+        response: rows
     });
 
     } catch(error) {
