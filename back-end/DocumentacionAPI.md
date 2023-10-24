@@ -22,6 +22,8 @@ Obtener todos los clientes:
   - Código de estado 200: [Cuando se devuelve el JSON de la tabla clientes correctamente.]
   - Código de estado 500: [Cuando el back-end no encuentra la tabla de clientes o no se conecta a la base de datos]
 
+---
+
 ### **[Trabajador]**
 Obtener todos los trabajadores
 - **Método HTTP**: [GET]
@@ -54,7 +56,7 @@ Actualizar nombre del trabajador
   - Código de estado 200: [Se devuelve un JSON con el codigo y la cantidad de filas afectadas.]
   - Código de estado 500: [Cuando el back-end no ejecuta bien la consulta o no se conecta a la base de datos]
   
-  Añadir trabajador trabajador
+Añadir trabajador a la tabla trabajador
 - **Método HTTP**: [POST]
 - **Ruta**: [/trabajador/add]
 - **Descripción**: [Este endpoint permite añadir un trabajador a la base de datos]
@@ -69,6 +71,8 @@ Actualizar nombre del trabajador
   - Código de estado 200: [Se devuelve un JSON con el codigo y la cantidad de filas afectadas.]
   - Código de estado 500: [Cuando el back-end no ejecuta bien la consulta o no se conecta a la base de datos]
   
+---
+
   ### **[Sector]**
 Actualizar sucursal de un sector según ID
 - **Método HTTP**: [PUT]
@@ -79,6 +83,8 @@ Actualizar sucursal de un sector según ID
 - **Respuestas esperadas**:
   - Código de estado 200: [Se devuelve el JSON con el codigo y la respuesta de la query]
   - Código de estado 500: [Cuando el back-end no encuentra la tabla de trabajadores o no se conecta a la base de datos]
+
+---
 
 ### **[Consultas]**
 Obtener resultados de consultas por ID
@@ -99,13 +105,14 @@ Obtener resultados de consultas por ID
 4. Obtener todas las direcciones de una sucursal específica.
 5. Listar todos los registros que son del tipo 'Novedad'.
 
-## Autenticación y Autorización
-Detalles sobre cómo los clientes deben autenticarse y posiblemente autorizarse para acceder a ciertos recursos.
+---
 
+## Autenticación y Autorización
+En siguientes entregas, se tiene planeado crear un sistema de login, donde el trabajador puede ingresar usando su rut/contraseña. Una vez ingresado, éste puede tener distintas facultades dentro del sistema
 - **Autenticación**:
-  - [Descripción de métodos de autenticación]
+  - [Un formulario de login con sus respectivas medidas de seguridad.]
 - **Autorización**:
-  - [Descripción de métodos de autorización]
+  - [Según atributo de 'cargo' que tenga el usuario o trabajador.]
 
 ## Errores
 Descripción de posibles códigos de error y su significado.
