@@ -31,6 +31,14 @@ const getAllTrabajadores = async (req, res) => {
 const getTrabajadorByCargo = async (req, res) => {
     try {
       const cargo = req.params.cargo;
+
+      if(cargo != "Lector" && cargo != "Inspector"){
+        return res.status(400).json({
+          status: false,
+          error: "El cargo ingresado no es valido",
+          code: error
+        });
+      }
       const connection = await createConnection();
       const [rows] = await connection.execute('SELECT * FROM trabajador WHERE cargo = ?', [cargo]);
       await connection.end();
@@ -71,8 +79,37 @@ const updateNombreTrabajador = async (req, res) => {
   }
 };
 
+const addTrabajador = async (req, res) => {
+  try {
+    console.log(req.body);
+    rut = req.body.rut;
+    idSector = req.body.idSectores;
+    nombre = req.body.nombre;
+    password = req.body.password;
+    cargo = req.body.cargo;
+    horario = req.body.horario;
+
+    const connection = await createConnection();
+    const [result] = await connection.execute('INSERT INTO trabajador (rut, idSectores, nombre, password, cargo, horario) VALUES (?, ?, ?, ?, ?, ?)',
+     [nombre, rut, idSector, password, cargo, horario]);
+    await connection.end();
+
+    return res.status(200).json({
+      success: true,
+      affectedRows: result.affectedRows
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      status: false,
+      error: "Problema al añadir el trabajador",
+      code: error
+    });
+  }
+};
 module.exports = {
     getAllTrabajadores,
     getTrabajadorByCargo,
-    updateNombreTrabajador
+    updateNombreTrabajador,
+    addTrabajador,
 };

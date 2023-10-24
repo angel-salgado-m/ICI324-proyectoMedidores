@@ -23,14 +23,16 @@ Las librerias utilizadas para el correcto funcionamiento del proyecto son:
 
 Se utiliza el programa MySQL Workbench 8.0 para inicializar un servidor local de MySQL.
 
-## Cómo ejecutar el proyecto:
+## Cómo ejecutar el back-end del proyecto:
 
 1. Descargar o clonar el repositorio
 ```bash
 git clone git@github.com:angel-salgado-m/ICI324-proyectoMedidores.git
 ```
-2. Abrir una terminal y navegar hasta el directorio del proyecto.
-
+2. Abrir una terminal y navegar hasta el directorio del proyecto back-end.
+```bash
+cd ./back-end/
+```
 3. Instalar las dependencias necesarias.
 ```bash
 npm install
@@ -39,3 +41,23 @@ npm install
 ```bash
 node ./server.js
 ```
+
+## Cómo ejecutar el front-end del proyecto:
+
+1. Abrir otra terminar y navegar hasta el directorio del proyecto front-end.
+```bash
+cd ./front-end/
+```
+3. Instalar las dependencias necesarias.
+```bash
+npm install
+```
+4. Inicializar el siguiente comando para inicializar la aplicación
+```bash
+npm run dev
+```
+
+## Integrantes del grupo:
+
+- Martín Hernández Aguilera (martin.hernandez@alumnos.uv.cl)
+- Angel Salgado Mancilla (angel.salgado@alumnos.uv.cl)
