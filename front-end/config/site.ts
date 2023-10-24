@@ -30,6 +30,18 @@ export const siteConfig = {
 			label: "Login",
 			href: "/login",
 		  },
+		  {
+			label: "home-admin",
+			href: "/home-admin",
+		  },
+		  {
+			label: "Clientes",
+			href: "/clientes",
+		  },
+		  {
+			label: "trabajadores",
+			href: "/trabajadores",
+		  },
 		{
 			label: "Logout",
 			href: "/logout",
